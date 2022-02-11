@@ -26,7 +26,7 @@ train_y = torch.cat((y0, y1), 0)  #200个训练样本对应的类别
 class LogisticRegression(nn.Module):
     def __init__(self):
         super(LogisticRegression, self).__init__()
-        self.features = nn.Linear(2, 1) #全连接层
+        self.features = nn.Linear(2, 1) #全连接层 w0 w1 b
         self.sigmoid = nn.Sigmoid() #激活函数
 
     def forward(self, x):
@@ -36,7 +36,7 @@ class LogisticRegression(nn.Module):
 
 #实例化
 model = LogisticRegression()
-
+print(model.features)
 
 #3.模型训练
 lr = 0.1
@@ -76,5 +76,6 @@ for i in range(epoch):
         plt.title("Iteration: {}\nw0:{:.2f} w1:{:.2f} b: {:.2f} accuracy:{:.2%}".format(i, w0, w1, b, acc))
 
         plt.plot(plot_x, plot_y)
+        plt.savefig('Iteration{}.png'.format(i))
         plt.show()
 
